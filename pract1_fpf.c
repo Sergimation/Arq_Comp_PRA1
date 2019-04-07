@@ -36,7 +36,7 @@ void main()
 
 int openfile()
 {
-  trace = fopen("trace.txt", "w");
+  trace = fopen("tr_ordena_vector.prg", "w");
 }
 
 int readfile()
