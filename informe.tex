@@ -1,0 +1,28 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+\usepackage{multirow}
+\begin{document}
+\begin{table}[]
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
+\hline
+\multirow{3}{4em}{64 bytes}     & 2 bytes                        & 10,541                        & 25,706                             & 11,577                         & 11,778                        \\
+                              & 8 bytes                        & 9,149                         & 25,628                             & 11,445                         & 11,121                        \\
+                              & 16 bytes                       & 17,756                        & 30,570                             & 22,388                         & 20,416                        \\
+\hline
+\multirow{3}{4em}{128 bytes}    & 2 bytes                        & 6,999                         & 16,302                             & 7,184                          & 8,360                         \\
+                              & 8 bytes                        & 6,125                         & 16,085                             & 7,061                          & 6,937                         \\
+                              & 16 bytes                       & 5,344                         & 15,266                             & 7,099                          & 6,674                         \\
+\hline
+\multirow{3}{4em}{1 kbyte}      & 2 bytes                        & 1,725                         & 7,053                              & 1,725                          & 1,725                         \\
+                              & 8 bytes                        & 0,936                         & 3,271                              & 0,936                          & 0,936                         \\
+                              & 16 bytes                       & 0,650                         & 2,173                              & 0,812                          & 0,665                        
+\\
+\hline
+\end{tabular}
+\end{table}
+\end{document}
+
