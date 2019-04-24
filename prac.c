@@ -2,10 +2,10 @@
 
 int arr[100];
 int arrp[100];
-int keys[6];
 int num_primes;
 FILE *trace;
 
+int openfile();
 int readfile();
 void quickSort(int arr[], int low, int high);
 int partition(int arr[], int low, int high);
@@ -26,17 +26,18 @@ void main()
   printf("\nVector nombres primers:\n");
   int n=separatePrimes(arr,arrp);
   /*P*/fprintf(trace,"%d %p\n",3,&n);
-  int primes[n];
-  re_size(n, primes);
+  int keys[n + 1];
   printf("\nVector de claus:\n");
-  keyGenerator(primes, keys);
+  keyGenerator(arrp, keys);
   printf("\n\n");
   fclose(trace);
+
+  printf("%d", n);
 }
 
 int openfile()
 {
-  trace = fopen("tr_ordena_vector.prg", "w");
+  trace = fopen("trace.txt", "w");
 }
 
 int readfile()
