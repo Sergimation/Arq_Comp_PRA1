@@ -76,7 +76,6 @@
 \pagenumbering{arabic}
 \section{Introducció}
 \section{Anàlisi de resultats}
-\subsection{Algoritmes}
 % A nivell de cost de fallades, 1K / 16 / 4 és el millor
 % A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
 % Si no es pot permetre, i cost de comparados << a cost cache, 128 / 16 / 4.
@@ -101,7 +100,7 @@ dos blocs per conjunt. La millora que proporciona respecte a la MC presentada an
 és molt més substancial que l'increment del preu (el preu més o menys es multiplica per 4, mentre que
 el nombre de fallades es redueix amb un factor de 10) i la millora respecte al sistema crític no
 és tan substancial com per a cobrir els costos d'augmentar la mida del conjunt.
-\subsection{Algoritmes}
+\subsection{Algoritmes de Subtitució}
 Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}, amb qualsevol
  configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU.
  Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix 
