@@ -1,15 +1,91 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[simplified]{pgf-umlcd}
+\usepackage{tikz}
 \usepackage{multirow}
+\usepackage{float}
+\usetikzlibrary{positioning,fit,calc,arrows.meta, shapes}
+\usepackage{wrapfig}
+\graphicspath{ {images/} }
+
+%Tot això hauria d'anar en un pkg, però no sé com és fa
+\newcommand*{\assignatura}[1]{\gdef\1assignatura{#1}}
+\newcommand*{\grup}[1]{\gdef\3grup{#1}}
+\newcommand*{\professorat}[1]{\gdef\4professorat{#1}}
 \renewcommand{\tablename}{Taula}
+\renewcommand{\title}[1]{\gdef\5title{#1}}
+\renewcommand{\author}[1]{\gdef\6author{#1}}
+\renewcommand{\date}[1]{\gdef\7date{#1}}
+\renewcommand{\maketitle}{ %fa el maketitle de nou
+    \begin{titlepage}
+        \raggedright{UNIVERSITAT DE LLEIDA \\
+            Escola Politècnica Superior \\
+            Grau en Enginyeria Informàtica\\
+            \1assignatura\\}
+            \vspace{5cm}
+            \centering\huge{\5title \\}
+            \vspace{3cm}
+            \large{\6author} \\
+            \normalsize{\3grup}
+            \vfill
+            Professorat : \4professorat \\
+            Data : \7date
+\end{titlepage}}
+%Emplenar a partir d'aquí per a fer el títol : no se com es fa el package
+%S'han de renombrar totes, inclús date, si un camp es deixa en blanc no apareix
+
+\tikzset{
+	%Style of nodes. Si poses aquí un estil es pot reutilitzar més facilment
+	base/.style = {circle, draw=black,
+                           minimum width=0.75cm, font=\ttfamily,
+                           text centered},
+    dots/.style = {circle, draw=white,
+                           minimum width=0.75cm, font=\ttfamily,
+                           text centered},
+    last/.style = {base, fill=orange!15},
+    remove/.style = {base, fill=red!15},
+    change/.style = {base, fill=green!15},
+    tree/.style = {base, rectangle, minimum height=0.75cm},
+    stack/.style = {rectangle, font=\ttfamily, rounded corners, draw=black,
+                           minimum width=4cm, minimum height=1cm,
+                           text centered},
+   	even/.style = {stack, fill=green!30},
+   	odd/.style = {stack, fill=orange!15},
+   	blank/.style = {stack, minimum height=0.5cm, draw=white},
+   	typetag/.style={rectangle, draw=black!50, font=\ttfamily, anchor=west}
+}
+\renewcommand{\figurename}{Figura}
+\title{Pràctica: Jerarquia de Memòria}
+\author{Sergi Sales Jové, Sergi Simón Balcells}
+\date{Dimecres 24 de Abril}
+\assignatura{Arquitectura de Computadors}
+\professorat{Concepció Roig}
+\grup{GM3}
+
+%Comença el document
+
 \begin{document}
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
 \section{Introducció}
 \section{Anàlisi de resultats}
+\subsection{Algoritmes}
+Per el que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}
+
 % A nivell de cost de fallades, 1K / 16 / 4 és el millor
 % A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
 % Si no es pot permetre, i cost de comparados << a cost cache, 128 / 16 / 4.
 % S el cost dels comparadors es substancial: 128 / 8 / 2
 \subsection{Característiques de MC}
+Els resultats que s'analitzaran es troba en la taula \ref{tab:mc}.\\
+\\
 Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
 ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser d'1KB
 de mida, la mida de bloc hauria de ser de 16 bytes, i huria de tenir 4 blocs per conjunt.\\
@@ -51,6 +127,7 @@ Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
 \caption{Algorisme de substitució}
 \label{tab:sub}
 \end{table}
+
 \begin{table}[!h]
 \centering
 \begin{tabular}{ |c|c|c|c|c| }
@@ -73,5 +150,6 @@ Mida MC& Mida bloc& directa& 2 blocs/conjunt& 4 blocs/conjunt \\
 \caption{Característiques MC}
 \label{tab:mc}
 \end{table}
+
 \end{document}
 
