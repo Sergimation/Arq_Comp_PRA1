@@ -76,16 +76,66 @@
 \pagenumbering{arabic}
 \section{Introducció}
 \section{Anàlisi de resultats}
+\subsection{Algoritmes}
+Per el que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}
+
 % A nivell de cost de fallades, 1K / 16 / 4 és el millor
 % A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
 % Si no es pot permetre, i cost de comparados << a cost cache, 128 / 16 / 4.
 % S el cost dels comparadors es substancial: 128 / 8 / 2
+
+\subsection{Característiques de MC}
+Els resultats que s'analitzaran es troba en la taula \ref{tab:mc}.\\
+\\
+Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
+ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser de 1KB
+de mida, la mida de bloc hauria de ser de 16 bytes, i hauria de tenir 4 blocs per conjunt.\\
+\\
+Si el que es busca és abaratir els costos, donat que el canvi de memòria és de 4 vegades més
+alt, i els costos presumiblement s'incrementen linealment, llavors utilitzar 128 bytes, 16 bytes i
+4 blocs per conjunt és una bona opció en comparació a la quantitat de fallades que tenen la MC amb
+mida 64 bytes, així com el cost no és elevat tan elevat com el que requereix una Memòria de 64 bytes,
+i, el cost del millor a dos blocs conjunts amb 128 bytes de mida no representa un cost tan elevat
+en comparació a la pèrdua de temps.\\
+\\
+Finalment, com a resultat òptim creiem que seria 1Kbyte de mida amb 16 bytes de mida de bloc i
+dos blocs per conjunt. La millora que proporciona respecte a la MC presentada anteriorment de 128 bytes
+és molt més substancial que l'increment del preu (el preu més o menys es multiplica per 4, mentre que
+el nombre de fallades es redueix amb un factor de 10) i la millora respecte al sistema crític no
+és tan substancial com per a cobrir els costos d'augmentar la mida del conjunt.
 \subsection{Algoritmes}
-Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}, amb qualsevol configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU. Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix que els elements referenciats per un procés en un determinat instant de temps tendiran a ser referenciats de nou.
+Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}, amb qualsevol
+ configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU.
+ Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix 
+que els elements referenciats per un procés en un determinat instant de temps tendiran a ser referenciats de nou.\\
 \section{Conclusió}
 \section{Annex}
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
+\hline
+\multirow{3}{4em}{64 bytes}     & 2 bytes                        & 10,541                        & 25,706                             & 11,577                         & 11,778                        \\
+                              & 8 bytes                        & 9,149                         & 25,628                             & 11,445                         & 11,121                        \\
+                              & 16 bytes                       & 17,756                        & 30,570                             & 22,388                         & 20,416                        \\
+\hline
+\multirow{3}{4em}{128 bytes}    & 2 bytes                        & 6,999                         & 16,302                             & 7,184                          & 8,360                         \\
+                              & 8 bytes                        & 6,125                         & 16,085                             & 7,061                          & 6,937                         \\
+                              & 16 bytes                       & 5,344                         & 15,266                             & 7,099                          & 6,674                         \\
+\hline
+\multirow{3}{4em}{1 Kbyte}      & 2 bytes                        & 1,725                         & 7,053                              & 1,725                          & 1,725                         \\
+                              & 8 bytes                        & 0,936                         & 3,271                              & 0,936                          & 0,936                         \\
+                              & 16 bytes                       & 0,650                         & 2,173                              & 0,812                          & 0,665                        
+\\
+\hline
+\end{tabular}
+\caption{Algorisme de substitució}
+\label{tab:sub}
+\end{table}
 
 \begin{table}[!h]
+\centering
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
 Mida MC& Mida bloc& directa& 2 blocs/conjunt& 4 blocs/conjunt \\
@@ -102,33 +152,9 @@ Mida MC& Mida bloc& directa& 2 blocs/conjunt& 4 blocs/conjunt \\
 & 8 bytes & 1,485 & 0,974 & 0,982 \\
 & 16 bytes & 1,500 & 0,642 & 0,626 \\
 \hline
-
 \end{tabular}
 \caption{Característiques MC}
 \label{tab:mc}
-\end{table}
-
-\begin{table}[!h]
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
-\hline
-\multirow{3}{4em}{64 bytes}   & 2 bytes  & 10,541  & 25,706  & 11,577   & 11,778  \\
-        & 8 bytes  & 9,149   & 25,628   & 11,445  & 11,121  \\
-        & 16 bytes & 17,756  & 30,570 & 22,388  & 20,416  \\
-\hline
-\multirow{3}{4em}{128 bytes}  & 2 bytes  & 6,999   & 16,302   & 7,184    & 8,360   \\
-        & 8 bytes  & 6,125   & 16,085   & 7,061 & 6,937   \\
-        & 16 bytes & 5,344   & 15,266  & 7,099   & 6,674   \\
-\hline
-\multirow{3}{4em}{1 kbyte}      & 2 bytes  & 1,725   & 7,053        & 1,725    & 1,725   \\
-        & 8 bytes  & 0,936   & 3,271        & 0,936    & 0,936   \\
-        & 16 bytes & 0,650   & 2,173        & 0,812    & 0,665  
-\\
-\hline
-\end{tabular}
-\caption{Algorisme de substitució}
-\label{tab:sub}
 \end{table}
 
 \end{document}
