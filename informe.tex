@@ -1,10 +1,17 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
-
-
 \usepackage{multirow}
+\renewcommand{\tablename}{Taula}
 \begin{document}
-\begin{table}[]
+\section{Introducció}
+\section{Anàlisi de resultats}
+% A nivell de cost de fallades, 1K / 16 / 4 és el millor
+% A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
+% Si no es pot permetre, i cost de comparados << a cost cache, 128 / 16 / 4.
+% S el cost dels comparadors es substancial: 128 / 8 / 2
+\section{Conclusió}
+\section{Annex}
+\begin{table}[!h]
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
@@ -23,6 +30,30 @@ Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
 \\
 \hline
 \end{tabular}
+\caption{Algorisme de substitució}
+\label{tab:sub}
+\end{table}
+\begin{table}[!h]
+\begin{tabular}{ |c|c|c|c|c| }
+\hline
+Mida MC& Mida bloc& directa& 2 blocs/conjunt& 4 blocs/conjunt \\
+\hline
+\multirow{3}{4em}{64 bytes} & 2 bytes & 26,301 & 23,966 & 15,212 \\
+& 8 bytes & 23,548 & 18, 359 & 10,394 \\
+& 16 bytes & 37,252 & 22,728 & 17,756 \\
+\hline
+\multirow{3}{4em}{128 bytes} & 2 bytes & 13,263 & 12,203 & 11,979 \\
+& 8 bytes & 10,742 & 8,793 & 7,401 \\
+& 16 bytes & 13,356 & 9,357 & 6,310 \\
+\hline
+\multirow{3}{4em}{1 Kbyte} & 2 bytes & 2,219 & 1,786 & 1,802 \\
+& 8 bytes & 1,485 & 0,974 & 0,982 \\
+& 16 bytes & 1,500 & 0,642 & 0,626 \\
+\hline
+
+\end{tabular}
+\caption{Característiques MC}
+\label{tab:mc}
 \end{table}
 \end{document}
 
