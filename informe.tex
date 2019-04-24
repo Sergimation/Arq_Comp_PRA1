@@ -87,11 +87,11 @@ Per el que fa als algoritmes de substitució, segons podem veure a la Taula \ref
 Els resultats que s'analitzaran es troba en la taula \ref{tab:mc}.\\
 \\
 Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
-ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser d'1KB
-de mida, la mida de bloc hauria de ser de 16 bytes, i huria de tenir 4 blocs per conjunt.\\
+ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser de 1KB
+de mida, la mida de bloc hauria de ser de 16 bytes, i hauria de tenir 4 blocs per conjunt.\\
 \\
 Si el que es busca és abaratir els costos, donat que el canvi de memòria és de 4 vegades més
-alt, i els costos presumiblement s'incrementen linalment, llavors utilitzar 128 bytes, 16 bytes i
+alt, i els costos presumiblement s'incrementen linealment, llavors utilitzar 128 bytes, 16 bytes i
 4 blocs per conjunt és una bona opció en comparació a la quantitat de fallades que tenen la MC amb
 mida 64 bytes, així com el cost no és elevat tan elevat com el que requereix una Memòria de 64 bytes,
 i, el cost del millor a dos blocs conjunts amb 128 bytes de mida no representa un cost tan elevat
@@ -99,9 +99,9 @@ en comparació a la pèrdua de temps.\\
 \\
 Finalment, com a resultat òptim creiem que seria 1Kbyte de mida amb 16 bytes de mida de bloc i
 dos blocs per conjunt. La millora que proporciona respecte a la MC presentada anteriorment de 128 bytes
-es molt més substancial que l'increment del preu (el preu més o menys és multiplica per 4, mentre que
+és molt més substancial que l'increment del preu (el preu més o menys es multiplica per 4, mentre que
 el nombre de fallades es redueix amb un factor de 10) i la millora respecte al sistema crític no
-és tant substancial com per a cobrir els costos d'augmentar la mida del conjunt.
+és tan substancial com per a cobrir els costos d'augmentar la mida del conjunt.
 \section{Conclusió}
 \section{Annex}
 \begin{table}[!h]
