@@ -17,6 +17,8 @@
 \renewcommand{\title}[1]{\gdef\5title{#1}}
 \renewcommand{\author}[1]{\gdef\6author{#1}}
 \renewcommand{\date}[1]{\gdef\7date{#1}}
+\renewcommand{\contentsname}{Índex}
+\renewcommand{\listtablename}{Llista de taules}
 \renewcommand{\maketitle}{ %fa el maketitle de nou
     \begin{titlepage}
         \raggedright{UNIVERSITAT DE LLEIDA \\
@@ -72,18 +74,26 @@
 \newpage
 \pagenumbering{roman}
 \tableofcontents
+\listoftables
 \newpage
 \pagenumbering{arabic}
 \section{Introducció}
 %POtser es podria fer una petita explicació de la memoria cau i la seva importancia en el funcionament del computador
-Per poder veure i estudiar el funcionament d'una \textbf{M}emòria \textbf{C}au (MC) vàrem fer un
- programa que realitzes una serie de operacions amb uns valors fixes entregats amb l'enunciat de 
-la pràctica, i que a més, durant la realització del mateix, crees un fitxer on guardava la traça a memoria 
-que s'havia seguit.\\
-Amb la traça creada, en el laboratori vam realitzar l'estudi d'aquesta amb el programa SMPCache, que permet simular 
-el funcionament d'una MC amb la traça seleccionada. Totes les dades que es troben en l'annex estàn recollides durant aquella sessió,
-i aquestes es troben en forma de taula, per poder variar diferents paràmetres i poder-los comparar amb altres valors semblants.\\
-En el cas de la Taula \ref{tab:mc} buscavam variar el tipus d'organització que utilitza la MC per diferents valors de mida d'aquesta, mentres que en el de la Taula \ref{tab:sub} comparavem la efectivitat dels diferents algoritmes per diferents valors de bloc i MC.\\
+Per poder veure i estudiar el funcionament d'una \textbf{M}emòria \textbf{C}au (MC) es va fer un
+programa que realitzes una sèrie d'operacions amb uns valors fixes entregats amb l'enunciat de
+la pràctica, i que a més, durant la realització d'aquest, es creés un fitxer on guardava la traça a memòria
+que s'havia seguit.\\\\
+%
+Amb la traça creada, en el laboratori es va realitzar l'estudi d'aquesta amb el
+programa SMPCache, que permet simular
+el funcionament d'una MC amb la traça seleccionada. Totes les dades que es troben en
+l'annex estan recollides durant aquella sessió,
+i aquestes es troben en forma de taula, per poder variar diferents paràmetres
+i poder-los comparar.\\\\
+%
+En el cas de la Taula \ref{tab:mc} es buscava variar el tipus d'organització que utilitza la MC
+per diferents valors de mida d'aquesta, mentre que en el de la Taula \ref{tab:sub}
+es comparava l'efectivitat dels diferents algoritmes per diferents valors de bloc i MC.
 \section{Anàlisi de resultats}
 % A nivell de cost de fallades, 1K / 16 / 4 és el millor
 % A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
@@ -91,7 +101,9 @@ En el cas de la Taula \ref{tab:mc} buscavam variar el tipus d'organització que 
 % S el cost dels comparadors es substancial: 128 / 8 / 2
 
 \subsection{Característiques de MC}
-Els resultats que s'analitzaran es troba en la Taula \ref{tab:mc} del Annex.\\
+Els resultats que s'analitzaran es troba en la Taula \ref{tab:mc} del Annex. Per aquestes
+característiques, s'ofereix tres solucions: la primera serà la millor en qualitat a fallades,
+la segona una solució més assequible, i la tercera una solució que considerem òptima.\\
 \\
 Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
 ràpid, llavors el sistema amb MC hauria de ser de 1KB
@@ -101,7 +113,7 @@ Si el que es busca és abaratir els costos, donat que el canvi de memòria és d
 alt, i els costos presumiblement s'incrementen linealment, llavors utilitzar 128 bytes, 16 bytes i
 4 blocs per conjunt és una bona opció en comparació a la quantitat de fallades que tenen la MC amb
 mida 64 bytes, així com el cost no és tan elevat com el que requereix una Memòria de 64 bytes,
-i, el cost de millorar a dos blocs conjunts amb 128 bytes de mida no representa un augment tant gran
+i, el cost de millorar a dos blocs conjunts amb 128 bytes de mida no representa un augment tan gran
 en comparació a la pèrdua de temps.\\
 \\
 Finalment, com a resultat òptim creiem que seria 1Kbyte de mida amb 16 bytes de mida de bloc i
@@ -110,19 +122,33 @@ dos blocs per conjunt. La millora que proporciona respecte a la MC presentada an
 el nombre de fallades es redueix amb un factor de 10) i la millora respecte al sistema crític no
 és tan substancial com per a cobrir els costos d'augmentar la mida del conjunt.
 \subsection{Algoritmes de Subtitució}
-Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}, amb qualsevol
- configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU.\\
-També es pot observar com, quan la MC és suficientment gran (1Kbyte) i els blocs son més petits, els altres 
-algoritmes donen valors iguals al LRU (exepte el aleatori).\\
- Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix 
-que els elements referenciats per un procés en un determinat instant de temps tendiran a ser referenciats de nou.\\
+Pel que fa als algoritmes de substitució, segons es pot comprovar a la Taula \ref{tab:sub},
+amb qualsevol configuració de mida de la MC i mida de bloc, es veu
+que els millors resultats són els de l'algoritme LRU.\\
+\\
+També es pot observar com, quan la MC és suficientment gran (1Kbyte) i els blocs són
+més petits, els altres algoritmes donen valors iguals al LRU (excepte l'aleatori).
+Aquest fenomen pot ser a causa de la poca presa de decisions que fan els algorismes
+de substitució per la gran quantitat de memòria i conjunts a triar.\\
+\\
+Això es pot donar gràcies al fet que aquest algoritme aprofita
+el principi de localitat temporal, el qual estableix que els
+elements referenciats per un procés en un determinat instant
+de temps tendiran a ser referenciats de nou.
 \section{Conclusió}
-Amb els resultats obtinguts i l'anàlisi efectuat anteriorment podem veure com la millor opció tenint en compte cost
- i rendiment seria una MC de mida 1Kbyte, que ofereix un increment en el rendiment molt més gran que l'augment
- de cost que suposa aquesta MC. A més agafaríem una mida de bloc de 16 bytes amb 2 blocs per conjunt perquè
- la relació rendiment/cost també surt molt positiva quant al format de bloc, però augmentar a 4 blocs per conjunt 
-no surt tant a compte.\\
-I per últim agafaríem l'algoritme de LRU, ja que és el que sempre dona els millors resultats, aprofitant la localitat temporal.
+Amb els resultats obtinguts i l'anàlisi efectuada anteriorment podem
+veure com la millor opció tenint en compte cost
+i rendiment seria una MC de mida 1Kbyte, que ofereix
+un increment en el rendiment molt més gran que l'augment
+de cost que suposa aquesta MC. A més agafaríem una mida
+de bloc de 16 bytes amb 2 blocs per conjunt perquè
+la relació rendiment/cost també surt molt positiva quant al format
+de bloc, i l'augment de 4 blocs per conjunt
+no surt a compte en comparació a l'augment de costos.\\
+\\
+I per últim agafaríem l'algoritme de substitució LRU, ja que
+en tots els casos experimentals aconsegueix una major eficiència,
+segurament donat a l'aprofitament de la localitat temporal.
 \newpage
 \section{Annex}
 \begin{table}[!h]
