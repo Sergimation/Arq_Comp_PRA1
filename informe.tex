@@ -38,18 +38,18 @@
 \tikzset{
 	%Style of nodes. Si poses aquí un estil es pot reutilitzar més facilment
 	base/.style = {circle, draw=black,
-                           minimum width=0.75cm, font=\ttfamily,
-                           text centered},
+      minimum width=0.75cm, font=\ttfamily,
+      text centered},
     dots/.style = {circle, draw=white,
-                           minimum width=0.75cm, font=\ttfamily,
-                           text centered},
+      minimum width=0.75cm, font=\ttfamily,
+      text centered},
     last/.style = {base, fill=orange!15},
     remove/.style = {base, fill=red!15},
     change/.style = {base, fill=green!15},
     tree/.style = {base, rectangle, minimum height=0.75cm},
     stack/.style = {rectangle, font=\ttfamily, rounded corners, draw=black,
-                           minimum width=4cm, minimum height=1cm,
-                           text centered},
+      minimum width=4cm, minimum height=1cm,
+      text centered},
    	even/.style = {stack, fill=green!30},
    	odd/.style = {stack, fill=orange!15},
    	blank/.style = {stack, minimum height=0.5cm, draw=white},
@@ -82,7 +82,7 @@
 % S el cost dels comparadors es substancial: 128 / 8 / 2
 
 \subsection{Característiques de MC}
-Els resultats que s'analitzaran es troba en la taula \ref{tab:mc}.\\
+Els resultats que s'analitzaran es troba en la Taula \ref{tab:mc} del Annex.\\
 \\
 Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
 ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser de 1KB
@@ -91,8 +91,8 @@ de mida, la mida de bloc hauria de ser de 16 bytes, i hauria de tenir 4 blocs pe
 Si el que es busca és abaratir els costos, donat que el canvi de memòria és de 4 vegades més
 alt, i els costos presumiblement s'incrementen linealment, llavors utilitzar 128 bytes, 16 bytes i
 4 blocs per conjunt és una bona opció en comparació a la quantitat de fallades que tenen la MC amb
-mida 64 bytes, així com el cost no és elevat tan elevat com el que requereix una Memòria de 64 bytes,
-i, el cost del millor a dos blocs conjunts amb 128 bytes de mida no representa un cost tan elevat
+mida 64 bytes, així com el cost no és tan elevat com el que requereix una Memòria de 64 bytes,
+i, el cost de millorar a dos blocs conjunts amb 128 bytes de mida no representa un augment tant gran
 en comparació a la pèrdua de temps.\\
 \\
 Finalment, com a resultat òptim creiem que seria 1Kbyte de mida amb 16 bytes de mida de bloc i
@@ -106,31 +106,8 @@ Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{ta
  Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix 
 que els elements referenciats per un procés en un determinat instant de temps tendiran a ser referenciats de nou.\\
 \section{Conclusió}
+\newpage
 \section{Annex}
-\begin{table}[!h]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
-\hline
-\multirow{3}{4em}{64 bytes}     & 2 bytes                        & 10,541                        & 25,706                             & 11,577                         & 11,778                        \\
-                              & 8 bytes                        & 9,149                         & 25,628                             & 11,445                         & 11,121                        \\
-                              & 16 bytes                       & 17,756                        & 30,570                             & 22,388                         & 20,416                        \\
-\hline
-\multirow{3}{4em}{128 bytes}    & 2 bytes                        & 6,999                         & 16,302                             & 7,184                          & 8,360                         \\
-                              & 8 bytes                        & 6,125                         & 16,085                             & 7,061                          & 6,937                         \\
-                              & 16 bytes                       & 5,344                         & 15,266                             & 7,099                          & 6,674                         \\
-\hline
-\multirow{3}{4em}{1 Kbyte}      & 2 bytes                        & 1,725                         & 7,053                              & 1,725                          & 1,725                         \\
-                              & 8 bytes                        & 0,936                         & 3,271                              & 0,936                          & 0,936                         \\
-                              & 16 bytes                       & 0,650                         & 2,173                              & 0,812                          & 0,665                        
-\\
-\hline
-\end{tabular}
-\caption{Algorisme de substitució}
-\label{tab:sub}
-\end{table}
-
 \begin{table}[!h]
 \centering
 \begin{tabular}{ |c|c|c|c|c| }
@@ -154,5 +131,28 @@ Mida MC& Mida bloc& directa& 2 blocs/conjunt& 4 blocs/conjunt \\
 \label{tab:mc}
 \end{table}
 
+\begin{table}[!h]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Mida MC & Mida Bloc & LRU (\%) & aleatori (\%) & FIFO (\%) & LFU (\%) \\
+\hline
+\multirow{3}{4em}{64 bytes}     & 2 bytes   & 10,541   & 25,706        & 11,577    & 11,778   \\
+         & 8 bytes   & 9,149    & 25,628        & 11,445    & 11,121   \\
+         & 16 bytes  & 17,756   & 30,570        & 22,388    & 20,416   \\
+\hline
+\multirow{3}{4em}{128 bytes}    & 2 bytes   & 6,999    & 16,302        & 7,184     & 8,360    \\
+         & 8 bytes   & 6,125    & 16,085        & 7,061     & 6,937    \\
+         & 16 bytes  & 5,344    & 15,266        & 7,099     & 6,674    \\
+\hline
+\multirow{3}{4em}{1 Kbyte}      & 2 bytes   & 1,725    & 7,053         & 1,725     & 1,725    \\
+         & 8 bytes   & 0,936    & 3,271         & 0,936     & 0,936    \\
+         & 16 bytes  & 0,650    & 2,173         & 0,812     & 0,665   
+\\
+\hline
+\end{tabular}
+\caption{Algorisme de substitució}
+\label{tab:sub}
+\end{table}
 \end{document}
 
