@@ -102,10 +102,17 @@ el nombre de fallades es redueix amb un factor de 10) i la millora respecte al s
 és tan substancial com per a cobrir els costos d'augmentar la mida del conjunt.
 \subsection{Algoritmes de Subtitució}
 Pel que fa als algoritmes de substitució, segons podem veure a la Taula \ref{tab:sub}, amb qualsevol
- configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU.
+ configuració de mida de la MC i mida de bloc, podem veure que els millors resultats són els de l'algoritme LRU.\\
+També es pot observar com, quan la MC és suficientment gran (1Kbyte) i els blocs son més petits, els altres 
+algoritmes donen valors iguals al LRU (exepte el aleatori).\\
  Això es pot donar gràcies al fet que aquest algoritme aprofita el principi de localitat temporal, el qual estableix 
 que els elements referenciats per un procés en un determinat instant de temps tendiran a ser referenciats de nou.\\
 \section{Conclusió}
+Amb els resultats obtinguts i l'analisi efectuat anteriorment podem veure com la millor opció tenint en compte 
+cost i rendiment sería una MC de mida 1Kbyte, que ofereix un increment en el rendiment molt més gran que el 
+augment de cost que suposa aquesta MC. A més agafariem una mida de bloc de 16 bytes amb 2 blocs per conjunt perque la relacio rendiment/cost 
+també surt molt positiva en quant al tamany de bloc, però augmentar a 4 blocs per conjunt no surt tant a compte.\\
+I per ultim agafariem l'algritme de LRU ja que és el que sempre dona els millors resultats, aprofitant la localitat temporal.
 \newpage
 \section{Annex}
 \begin{table}[!h]
