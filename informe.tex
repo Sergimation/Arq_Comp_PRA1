@@ -75,7 +75,15 @@
 \newpage
 \pagenumbering{arabic}
 \section{Introducció}
-
+%POtser es podria fer una petita explicació de la memoria cau i la seva importancia en el funcionament del computador
+Per poder veure i estudiar el funcionament d'una \textbf{M}emòria \textbf{C}au (MC) vàrem fer un
+ programa que realitzes una serie de operacions amb uns valors fixes entregats amb l'enunciat de 
+la pràctica, i que a més, durant la realització del mateix, crees un fitxer on guardava la traça a memoria 
+que s'havia seguit.\\
+Amb la traça creada, en el laboratori vam realitzar l'estudi d'aquesta amb el programa SMPCache, que permet simular 
+el funcionament d'una MC amb la traça seleccionada. Totes les dades que es troben en l'annex estàn recollides durant aquella sessió,
+i aquestes es troben en forma de taula, per poder variar diferents paràmetres i poder-los comparar amb altres valors semblants.\\
+En el cas de la Taula \ref{tab:mc} buscavam variar el tipus d'organització que utilitza la MC per diferents valors de mida d'aquesta, mentres que en el de la Taula \ref{tab:sub} comparavem la efectivitat dels diferents algoritmes per diferents valors de bloc i MC.\\
 \section{Anàlisi de resultats}
 % A nivell de cost de fallades, 1K / 16 / 4 és el millor
 % A nivell de cost temporal, pot ser que 1K / 16 / 2 sigui millor, i és mica més barat
@@ -86,7 +94,7 @@
 Els resultats que s'analitzaran es troba en la Taula \ref{tab:mc} del Annex.\\
 \\
 Si és un sistema crític que necessita la mínima quantitat de fallades per a ser més
-ràpid, llavors el sistema amb \textbf{M}emòria \textbf{C}au (MC) hauria de ser de 1KB
+ràpid, llavors el sistema amb MC hauria de ser de 1KB
 de mida, la mida de bloc hauria de ser de 16 bytes, i hauria de tenir 4 blocs per conjunt.\\
 \\
 Si el que es busca és abaratir els costos, donat que el canvi de memòria és de 4 vegades més
